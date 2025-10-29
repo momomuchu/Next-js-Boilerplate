@@ -1,8 +1,9 @@
-import { SignOutButton } from '@clerk/nextjs';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { AuthSignOutButton } from '@/components/AuthButtons';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
+import { getI18nPath } from '@/utils/Helpers';
 
 export default async function DashboardLayout(props: {
   children: React.ReactNode;
@@ -14,6 +15,9 @@ export default async function DashboardLayout(props: {
     locale,
     namespace: 'DashboardLayout',
   });
+  const dashboardUrl = getI18nPath('/dashboard/', locale);
+  const profileUrl = getI18nPath('/dashboard/user-profile/', locale);
+  const afterSignOutUrl = getI18nPath('/', locale);
 
   return (
     <BaseTemplate
@@ -21,7 +25,7 @@ export default async function DashboardLayout(props: {
         <>
           <li>
             <Link
-              href="/dashboard/"
+              href={dashboardUrl}
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('dashboard_link')}
@@ -29,7 +33,7 @@ export default async function DashboardLayout(props: {
           </li>
           <li>
             <Link
-              href="/dashboard/user-profile/"
+              href={profileUrl}
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('user_profile_link')}
@@ -40,11 +44,12 @@ export default async function DashboardLayout(props: {
       rightNav={(
         <>
           <li>
-            <SignOutButton>
-              <button className="border-none text-gray-700 hover:text-gray-900" type="button">
-                {t('sign_out')}
-              </button>
-            </SignOutButton>
+            <AuthSignOutButton
+              className="border-none text-gray-700 hover:text-gray-900"
+              callbackUrl={afterSignOutUrl}
+            >
+              {t('sign_out')}
+            </AuthSignOutButton>
           </li>
 
           <li>

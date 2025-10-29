@@ -53,11 +53,17 @@
   },
   "SignIn": {
     "meta_title": "Se connecter",
-    "meta_description": "Connectez-vous à votre compte avec facilité."
+    "meta_description": "Connectez-vous à votre compte avec facilité.",
+    "cta_github": "Continuer avec GitHub",
+    "cta_google": "Continuer avec Google",
+    "helper": "Choisissez votre fournisseur préféré ci-dessous. Nous ne demandons que vos informations de profil de base."
   },
   "SignUp": {
     "meta_title": "S'inscrire",
-    "meta_description": "Créez un compte facilement grâce à notre processus d'inscription intuitif."
+    "meta_description": "Créez un compte facilement grâce à notre processus d'inscription intuitif.",
+    "cta_github": "Créer votre compte avec GitHub",
+    "cta_google": "Créer votre compte avec Google",
+    "helper": "Sélectionnez GitHub ou Google — les deux options configurent votre profil en toute sécurité."
   },
   "Dashboard": {
     "meta_title": "Tableau de bord",
@@ -65,7 +71,14 @@
     "alternative_message": "Vous voulez créer votre SaaS plus rapidement en utilisant la même stack ? Essayez <url></url>."
   },
   "UserProfile": {
-    "meta_title": "Profil de l'utilisateur"
+    "meta_title": "Profil de l'utilisateur",
+    "heading": "Détails du compte",
+    "description": "Consultez les informations reçues de votre fournisseur d'identité connecté.",
+    "name_label": "Nom",
+    "email_label": "Email",
+    "provider_label": "Fournisseurs connectés",
+    "missing_value": "Non disponible",
+    "sign_out": "Se déconnecter"
   },
   "DashboardLayout": {
     "dashboard_link": "Tableau de bord",

@@ -62,12 +62,12 @@ export default async function Index(props: IIndexProps) {
           {' '}
           <a
             className="font-bold text-blue-700 hover:border-b-2 hover:border-blue-700"
-            href="https://clerk.com?utm_source=github&amp;utm_medium=sponsorship&amp;utm_campaign=nextjs-boilerplate"
+            href="https://authjs.dev/"
           >
-            Clerk
+            Auth.js (NextAuth.js)
           </a>
           {' '}
-          (includes passwordless, social, and multi-factor auth)
+          configured for GitHub and Google OAuth and ready to extend with additional providers.
         </li>
         <li>📦 ORM with DrizzleORM (PostgreSQL, SQLite, MySQL support)</li>
         <li>

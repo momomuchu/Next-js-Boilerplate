@@ -1,24 +1,40 @@
 import type { NextFetchEvent, NextRequest } from 'next/server';
 import { detectBot } from '@arcjet/next';
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { getToken } from 'next-auth/jwt';
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 import arcjet from '@/libs/Arcjet';
+import { getI18nPath } from '@/utils/Helpers';
 import { routing } from './libs/I18nRouting';
 
 const handleI18nRouting = createMiddleware(routing);
 
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)',
-  '/:locale/dashboard(.*)',
-]);
+const protectedRoutePatterns = [
+  /^\/dashboard(\/.*)?$/,
+  /^\/[^/]+\/dashboard(\/.*)?$/,
+];
 
-const isAuthPage = createRouteMatcher([
-  '/sign-in(.*)',
-  '/:locale/sign-in(.*)',
-  '/sign-up(.*)',
-  '/:locale/sign-up(.*)',
-]);
+const authRoutePatterns = [
+  /^\/sign-in(\/.*)?$/,
+  /^\/[^/]+\/sign-in(\/.*)?$/,
+  /^\/sign-up(\/.*)?$/,
+  /^\/[^/]+\/sign-up(\/.*)?$/,
+];
+
+const matchesRoute = (pathname: string, patterns: RegExp[]) => {
+  return patterns.some(pattern => pattern.test(pathname));
+};
+
+const resolveLocaleFromPathname = (pathname: string) => {
+  const segments = pathname.split('/').filter(Boolean);
+  const potentialLocale = segments[0];
+
+  if (potentialLocale && routing.locales.includes(potentialLocale)) {
+    return potentialLocale;
+  }
+
+  return routing.defaultLocale;
+};
 
 // Improve security with Arcjet
 const aj = arcjet.withRule(
@@ -38,7 +54,7 @@ const aj = arcjet.withRule(
 // Then, unfortunately, Webpack doesn't support `proxy.ts` on Vercel yet, here is the error: "Error: ENOENT: no such file or directory, lstat '/vercel/path0/.next/server/proxy.js'"
 export default async function middleware(
   request: NextRequest,
-  event: NextFetchEvent,
+  _event: NextFetchEvent,
 ) {
   // Verify the request with Arcjet
   // Use `process.env` instead of Env to reduce bundle size in middleware
@@ -50,23 +66,26 @@ export default async function middleware(
     }
   }
 
-  // Clerk keyless mode doesn't work with i18n, this is why we need to run the middleware conditionally
-  if (
-    isAuthPage(request) || isProtectedRoute(request)
-  ) {
-    return clerkMiddleware(async (auth, req) => {
-      if (isProtectedRoute(req)) {
-        const locale = req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? '';
+  // Protect authenticated routes while preserving i18n-aware routing
+  const { pathname } = request.nextUrl;
+  const locale = resolveLocaleFromPathname(pathname);
+  const isProtectedRoute = matchesRoute(pathname, protectedRoutePatterns);
+  const isAuthRoute = matchesRoute(pathname, authRoutePatterns);
+  const shouldInspectSession = isProtectedRoute || isAuthRoute;
+  const token = shouldInspectSession ? await getToken({ req: request }) : null;
 
-        const signInUrl = new URL(`${locale}/sign-in`, req.url);
+  if (isProtectedRoute && !token) {
+    const signInPath = getI18nPath('/sign-in', locale);
+    const signInUrl = new URL(signInPath, request.url);
 
-        await auth.protect({
-          unauthenticatedUrl: signInUrl.toString(),
-        });
-      }
+    return NextResponse.redirect(signInUrl);
+  }
 
-      return handleI18nRouting(req);
-    })(request, event);
+  if (isAuthRoute && token) {
+    const dashboardPath = getI18nPath('/dashboard/', locale);
+    const dashboardUrl = new URL(dashboardPath, request.url);
+
+    return NextResponse.redirect(dashboardUrl);
   }
 
   return handleI18nRouting(request);

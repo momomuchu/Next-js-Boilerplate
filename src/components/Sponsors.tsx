@@ -7,16 +7,12 @@ export const Sponsors = () => (
       <tr className="h-56">
         <td className="border-2 border-gray-300 p-3">
           <a
-            href="https://clerk.com?utm_source=github&utm_medium=sponsorship&utm_campaign=nextjs-boilerplate"
+            href="https://authjs.dev/"
             target="_blank"
             rel="noopener"
+            className="flex h-full w-full items-center justify-center text-lg font-semibold"
           >
-            <Image
-              src="/assets/images/clerk-logo-dark.png"
-              alt="Clerk – Authentication & User Management for Next.js"
-              width={260}
-              height={224}
-            />
+            Auth.js (NextAuth.js)
           </a>
         </td>
         <td className="border-2 border-gray-300 p-3">

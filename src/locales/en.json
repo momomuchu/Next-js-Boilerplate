@@ -53,11 +53,17 @@
   },
   "SignIn": {
     "meta_title": "Sign in",
-    "meta_description": "Seamlessly sign in to your account with our user-friendly login process."
+    "meta_description": "Seamlessly sign in to your account with our user-friendly login process.",
+    "cta_github": "Continue with GitHub",
+    "cta_google": "Continue with Google",
+    "helper": "Pick your preferred provider below. We only request your basic profile details."
   },
   "SignUp": {
     "meta_title": "Sign up",
-    "meta_description": "Effortlessly create an account through our intuitive sign-up process."
+    "meta_description": "Effortlessly create an account through our intuitive sign-up process.",
+    "cta_github": "Create your account with GitHub",
+    "cta_google": "Create your account with Google",
+    "helper": "Choose GitHub or Google—either option securely provisions your profile."
   },
   "Dashboard": {
     "meta_title": "Dashboard",
@@ -65,7 +71,14 @@
     "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>."
   },
   "UserProfile": {
-    "meta_title": "User Profile"
+    "meta_title": "User Profile",
+    "heading": "Account details",
+    "description": "Review the information we receive from your connected identity provider.",
+    "name_label": "Name",
+    "email_label": "Email",
+    "provider_label": "Connected providers",
+    "missing_value": "Not available",
+    "sign_out": "Sign out"
   },
   "DashboardLayout": {
     "dashboard_link": "Dashboard",
