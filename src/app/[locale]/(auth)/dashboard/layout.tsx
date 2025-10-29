@@ -1,5 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { auth } from '@/auth';
 import { AuthSignOutButton } from '@/components/AuthButtons';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
@@ -11,6 +13,11 @@ export default async function DashboardLayout(props: {
 }) {
   const { locale } = await props.params;
   setRequestLocale(locale);
+  const session = await auth();
+
+  if (!session) {
+    redirect(getI18nPath('/sign-in', locale));
+  }
   const t = await getTranslations({
     locale,
     namespace: 'DashboardLayout',

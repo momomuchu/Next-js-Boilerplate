@@ -43,6 +43,7 @@ export default async function UserProfilePage(props: IUserProfilePageProps) {
   const providerLabels: Record<string, string> = {
     github: 'GitHub',
     google: 'Google',
+    credentials: t('provider_password'),
   };
   let providerDisplay = t('missing_value');
 

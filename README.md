@@ -146,7 +146,7 @@ Developer experience first, extremely flexible code structure and only keep what
 - 🔥 Type checking [TypeScript](https://www.typescriptlang.org)
 - 💎 Integrate with [Tailwind CSS](https://tailwindcss.com)
 - ✅ Strict Mode for TypeScript and React 19
-- 🔒 Authentication with [Auth.js (NextAuth.js)](https://authjs.dev/): GitHub and Google OAuth out of the box with secure, database-backed sessions.
+- 🔒 Authentication with [Auth.js (NextAuth.js)](https://authjs.dev/): GitHub, Google, and email/password flows backed by secure database sessions.
 - 👤 Easily extend authentication by adding more OAuth providers or custom credential flows through Auth.js.
 - 📦 Type-safe ORM with DrizzleORM, compatible with PostgreSQL, SQLite, and MySQL
 - 💽 Offline and local development database with PGlite
@@ -254,7 +254,7 @@ GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 ```
 
-With the environment variables in place, `npm run dev` will provide a fully working sign-in flow using GitHub and Google. You can add additional OAuth providers or credential strategies later by updating `src/auth.config.ts`.
+With the environment variables in place, `npm run dev` will provide a fully working sign-in flow using GitHub, Google, and classic email/password credentials. You can add additional OAuth providers or credential strategies later by updating `src/auth.config.ts`.
 
 ### Set up remote database
 
@@ -309,6 +309,7 @@ You can easily configure Next js Boilerplate by searching the entire project for
 - `public/apple-touch-icon.png`, `public/favicon.ico`, `public/favicon-16x16.png` and `public/favicon-32x32.png`: your website favicon
 - `src/utils/AppConfig.ts`: configuration file
 - `src/templates/BaseTemplate.tsx`: default theme
+- `src/theme/index.ts`: utilities to update the runtime color palette (`setThemePalette({ primary: '#1d4ed8', secondary: '#f97316' })`)
 - `next.config.ts`: Next.js configuration
 - `.env`: default environment variables
 

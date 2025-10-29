@@ -67,7 +67,7 @@ export default async function Index(props: IIndexProps) {
             Auth.js (NextAuth.js)
           </a>
           {' '}
-          configured for GitHub and Google OAuth and ready to extend with additional providers.
+          configured for GitHub, Google, and email/password flows, and ready to extend with additional providers.
         </li>
         <li>📦 ORM with DrizzleORM (PostgreSQL, SQLite, MySQL support)</li>
         <li>

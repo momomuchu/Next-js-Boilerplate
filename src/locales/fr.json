@@ -56,14 +56,34 @@
     "meta_description": "Connectez-vous à votre compte avec facilité.",
     "cta_github": "Continuer avec GitHub",
     "cta_google": "Continuer avec Google",
-    "helper": "Choisissez votre fournisseur préféré ci-dessous. Nous ne demandons que vos informations de profil de base."
+    "helper": "Choisissez votre fournisseur préféré ou utilisez votre email et mot de passe.",
+    "credentials_heading": "Se connecter avec un email",
+    "credentials_helper": "Utilisez l'email et le mot de passe créés pour ce compte.",
+    "email_label": "Email",
+    "password_label": "Mot de passe",
+    "credentials_submit": "Se connecter",
+    "credentials_error": "Email ou mot de passe invalide.",
+    "badge_title": "Sécurisé par conception",
+    "hero_heading": "Ravi de vous revoir",
+    "hero_subheading": "Retrouvez vos tableaux de bord, gérez vos projets et reprenez votre travail en quelques secondes."
   },
   "SignUp": {
     "meta_title": "S'inscrire",
     "meta_description": "Créez un compte facilement grâce à notre processus d'inscription intuitif.",
     "cta_github": "Créer votre compte avec GitHub",
     "cta_google": "Créer votre compte avec Google",
-    "helper": "Sélectionnez GitHub ou Google — les deux options configurent votre profil en toute sécurité."
+    "helper": "Sélectionnez GitHub, Google ou créez un accès classique avec email et mot de passe.",
+    "credentials_heading": "Créer un compte par email",
+    "credentials_helper": "Définissez un mot de passe pour vous connecter sans fournisseur social.",
+    "name_label": "Nom (optionnel)",
+    "email_label": "Email",
+    "password_label": "Mot de passe",
+    "credentials_submit": "Créer le compte",
+    "credentials_error_taken": "Un compte existe déjà pour cet email.",
+    "credentials_error_generic": "Impossible de créer votre compte. Veuillez réessayer.",
+    "badge_title": "Commencez gratuitement",
+    "hero_heading": "Créez votre compte en moins d’une minute",
+    "hero_subheading": "Connectez-vous avec un fournisseur social ou créez des identifiants classiques. Vous pourrez en ajouter d’autres plus tard."
   },
   "Dashboard": {
     "meta_title": "Tableau de bord",
@@ -77,6 +97,7 @@
     "name_label": "Nom",
     "email_label": "Email",
     "provider_label": "Fournisseurs connectés",
+    "provider_password": "Email et mot de passe",
     "missing_value": "Non disponible",
     "sign_out": "Se déconnecter"
   },

@@ -56,14 +56,34 @@
     "meta_description": "Seamlessly sign in to your account with our user-friendly login process.",
     "cta_github": "Continue with GitHub",
     "cta_google": "Continue with Google",
-    "helper": "Pick your preferred provider below. We only request your basic profile details."
+    "helper": "Pick your preferred provider below or use email and password.",
+    "credentials_heading": "Sign in with email",
+    "credentials_helper": "Use the email and password you created for this account.",
+    "email_label": "Email",
+    "password_label": "Password",
+    "credentials_submit": "Sign in",
+    "credentials_error": "Invalid email or password.",
+    "badge_title": "Secure by design",
+    "hero_heading": "Welcome back to your workspace",
+    "hero_subheading": "Access dashboards, manage your projects, and pick up where you left off in seconds."
   },
   "SignUp": {
     "meta_title": "Sign up",
     "meta_description": "Effortlessly create an account through our intuitive sign-up process.",
     "cta_github": "Create your account with GitHub",
     "cta_google": "Create your account with Google",
-    "helper": "Choose GitHub or Google—either option securely provisions your profile."
+    "helper": "Choose GitHub, Google, or create a classic email and password login.",
+    "credentials_heading": "Create an email account",
+    "credentials_helper": "Set a password and you will be able to sign in without a social provider.",
+    "name_label": "Name (optional)",
+    "email_label": "Email",
+    "password_label": "Password",
+    "credentials_submit": "Create account",
+    "credentials_error_taken": "An account already exists for this email.",
+    "credentials_error_generic": "We couldn't create your account. Please try again.",
+    "badge_title": "Get started for free",
+    "hero_heading": "Create your account in less than a minute",
+    "hero_subheading": "Choose a social provider or create classic credentials. You can always link more providers later."
   },
   "Dashboard": {
     "meta_title": "Dashboard",
@@ -77,6 +97,7 @@
     "name_label": "Name",
     "email_label": "Email",
     "provider_label": "Connected providers",
+    "provider_password": "Email & password",
     "missing_value": "Not available",
     "sign_out": "Sign out"
   },
