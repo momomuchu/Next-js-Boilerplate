@@ -1,8 +1,11 @@
 import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
+import { eq } from 'drizzle-orm';
 import { Env } from '@/libs/Env';
 import { logger } from '@/libs/Logger';
 import { stripe } from '@/libs/Stripe';
+import { db } from '@/libs/DB';
+import { payments } from '@/models/Schema';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -10,6 +13,7 @@ export const dynamic = 'force-dynamic';
 const handledEvents = new Set<Stripe.Event.Type>([
   'checkout.session.completed',
   'checkout.session.expired',
+  'checkout.session.async_payment_failed',
   'invoice.payment_succeeded',
   'invoice.payment_failed',
 ]);
@@ -59,6 +63,35 @@ export async function POST(request: Request) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
 
+        if (session.mode === 'payment') {
+          const paymentIntentId = typeof session.payment_intent === 'string'
+            ? session.payment_intent
+            : session.payment_intent?.id ?? null;
+
+          const updates: Partial<typeof payments.$inferInsert> = {
+            status: 'completed',
+            completedAt: new Date(),
+            updatedAt: new Date(),
+          };
+
+          if (paymentIntentId) {
+            updates.stripePaymentIntentId = paymentIntentId;
+          }
+
+          if (typeof session.amount_total === 'number') {
+            updates.amount = session.amount_total;
+          }
+
+          if (session.currency) {
+            updates.currency = session.currency.toLowerCase();
+          }
+
+          await db
+            .update(payments)
+            .set(updates)
+            .where(eq(payments.stripeSessionId, session.id));
+        }
+
         logger.info('Stripe checkout session completed', {
           sessionId: session.id,
           customerId: session.customer ?? undefined,
@@ -73,7 +106,38 @@ export async function POST(request: Request) {
       case 'checkout.session.expired': {
         const session = event.data.object as Stripe.Checkout.Session;
 
+        if (session.mode === 'payment') {
+          await db
+            .update(payments)
+            .set({
+              status: 'expired',
+              updatedAt: new Date(),
+            })
+            .where(eq(payments.stripeSessionId, session.id));
+        }
+
         logger.warn('Stripe checkout session expired', {
+          sessionId: session.id,
+          customerId: session.customer ?? undefined,
+        });
+
+        break;
+      }
+
+      case 'checkout.session.async_payment_failed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+
+        if (session.mode === 'payment') {
+          await db
+            .update(payments)
+            .set({
+              status: 'failed',
+              updatedAt: new Date(),
+            })
+            .where(eq(payments.stripeSessionId, session.id));
+        }
+
+        logger.error('Stripe checkout session async payment failed', {
           sessionId: session.id,
           customerId: session.customer ?? undefined,
         });

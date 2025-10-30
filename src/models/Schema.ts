@@ -1,6 +1,6 @@
 import type { AdapterAccount } from 'next-auth/adapters';
 import { randomUUID } from 'node:crypto';
-import { boolean, integer, pgTable, primaryKey, serial, text, timestamp } from 'drizzle-orm/pg-core';
+import { boolean, integer, jsonb, pgTable, primaryKey, serial, text, timestamp } from 'drizzle-orm/pg-core';
 
 // This file defines the structure of your database tables using the Drizzle ORM.
 
@@ -83,3 +83,22 @@ export const authenticators = pgTable('authenticator', {
 }, authenticator => ({
   compositePk: primaryKey({ columns: [authenticator.userId, authenticator.credentialID] }),
 }));
+
+export const payments = pgTable('payment', {
+  id: text('id').primaryKey().$defaultFn(() => randomUUID()),
+  userId: text('user_id')
+    .references(() => users.id, { onDelete: 'set null' }),
+  stripeSessionId: text('stripe_session_id').notNull().unique(),
+  stripePaymentIntentId: text('stripe_payment_intent_id'),
+  amount: integer('amount').notNull(),
+  currency: text('currency').notNull(),
+  status: text('status').notNull().default('pending'),
+  productName: text('product_name'),
+  metadata: jsonb('metadata').$type<Record<string, string> | null>(),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { mode: 'date' })
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+  completedAt: timestamp('completed_at', { mode: 'date' }),
+});

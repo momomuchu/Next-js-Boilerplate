@@ -2,10 +2,24 @@ import type Stripe from 'stripe';
 import { z } from 'zod';
 import { stripe } from './Stripe';
 
-const lineItemSchema = z.object({
-  price: z.string().min(1),
-  quantity: z.number().int().positive().default(1),
+const priceDataSchema = z.object({
+  currency: z.string().min(1),
+  unitAmount: z.number().int().positive(),
+  productName: z.string().min(1),
+  productDescription: z.string().optional(),
 });
+
+const lineItemSchema = z.object({
+  price: z.string().min(1).optional(),
+  priceData: priceDataSchema.optional(),
+  quantity: z.number().int().positive().default(1),
+}).refine(
+  (value) => Boolean(value.price) || Boolean(value.priceData),
+  {
+    message: 'Provide either a `price` or `priceData` for each line item.',
+    path: ['price'],
+  },
+);
 
 export const checkoutSessionSchema = z.object({
   mode: z.enum(['payment', 'subscription']).default('subscription'),
@@ -49,10 +63,26 @@ export const createCheckoutSession = async (
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[]
     = parsedInput.lineItems
-    ? parsedInput.lineItems.map((item) => ({
-      price: item.price,
-      quantity: item.quantity ?? 1,
-    }))
+    ? parsedInput.lineItems.map((item) => {
+      if (item.priceData) {
+        return {
+          price_data: {
+            currency: item.priceData.currency,
+            unit_amount: item.priceData.unitAmount,
+            product_data: {
+              name: item.priceData.productName,
+              description: item.priceData.productDescription,
+            },
+          },
+          quantity: item.quantity ?? 1,
+        };
+      }
+
+      return {
+        price: item.price!,
+        quantity: item.quantity ?? 1,
+      };
+    })
     : [
       {
         price: parsedInput.priceId!,
