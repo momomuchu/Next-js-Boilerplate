@@ -37,6 +37,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@logtape/logtape": "^1.1.2",
     "@sentry/nextjs": "^10.22.0",
+    "@stripe/stripe-js": "^8.2.0",
     "@t3-oss/env-nextjs": "^0.13.8",
     "bcryptjs": "^2.4.3",
     "drizzle-orm": "^0.44.7",
@@ -48,6 +49,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.65.0",
+    "stripe": "^19.2.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {

@@ -57,11 +57,18 @@ export const CredentialsSignUpForm = ({
       const signInResult = await signIn('credentials', {
         email,
         password,
+        redirect: false,
         redirectTo: redirectPath,
       });
 
       if (signInResult?.error) {
         setError(labels.errorGeneric);
+
+        return;
+      }
+
+      if (signInResult?.url) {
+        window.location.assign(signInResult.url);
       }
     });
   };
