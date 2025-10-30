@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
+import createMDX from '@next/mdx';
 import createNextIntlPlugin from 'next-intl/plugin';
 import './src/libs/Env';
 
@@ -18,10 +19,17 @@ const baseConfig: NextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true,
   },
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
 // Initialize the Next-Intl plugin
 let configWithPlugins = createNextIntlPlugin('./src/libs/I18n.ts')(baseConfig);
+
+// Initialize MDX
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+});
+configWithPlugins = withMDX(configWithPlugins);
 
 // Conditionally enable bundle analysis
 if (process.env.ANALYZE === 'true') {
