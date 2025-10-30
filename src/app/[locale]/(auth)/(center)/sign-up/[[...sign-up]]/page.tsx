@@ -95,7 +95,7 @@ export default async function SignUpPage(props: ISignUpPageProps) {
 
         <div className="w-full md:w-[420px]">
           <CredentialsSignUpForm
-            redirectPath={dashboardPath}
+            redirectPath={dashboardUrl}
             labels={credentialsLabels}
           />
         </div>

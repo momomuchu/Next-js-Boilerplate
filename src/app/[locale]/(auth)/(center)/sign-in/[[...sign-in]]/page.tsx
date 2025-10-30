@@ -93,7 +93,7 @@ export default async function SignInPage(props: ISignInPageProps) {
 
         <div className="w-full md:w-[420px]">
           <CredentialsSignInForm
-            redirectPath={dashboardPath}
+            redirectPath={dashboardUrl}
             labels={credentialsLabels}
           />
         </div>

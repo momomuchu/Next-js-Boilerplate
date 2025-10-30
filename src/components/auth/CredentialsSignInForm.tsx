@@ -1,7 +1,6 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 type CredentialsSignInFormProps = {
@@ -20,7 +19,6 @@ export const CredentialsSignInForm = ({
   redirectPath,
   labels,
 }: CredentialsSignInFormProps) => {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -31,24 +29,15 @@ export const CredentialsSignInForm = ({
     setError(null);
 
     startTransition(async () => {
-      const destination = redirectPath.startsWith('http')
-        ? redirectPath
-        : `${window.location.origin}${redirectPath}`;
-
       const result = await signIn('credentials', {
-        redirect: false,
         email,
         password,
-        callbackUrl: destination,
+        redirectTo: redirectPath,
       });
 
       if (result?.error) {
         setError(labels.error);
-        return;
       }
-
-      router.push(redirectPath);
-      router.refresh();
     });
   };
 

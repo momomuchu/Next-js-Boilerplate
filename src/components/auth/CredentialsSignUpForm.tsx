@@ -1,7 +1,6 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 import { registerUser } from '@/actions/register-user';
 
@@ -23,7 +22,6 @@ export const CredentialsSignUpForm = ({
   redirectPath,
   labels,
 }: CredentialsSignUpFormProps) => {
-  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,24 +54,15 @@ export const CredentialsSignUpForm = ({
         return;
       }
 
-      const destination = redirectPath.startsWith('http')
-        ? redirectPath
-        : `${window.location.origin}${redirectPath}`;
-
       const signInResult = await signIn('credentials', {
-        redirect: false,
         email,
         password,
-        callbackUrl: destination,
+        redirectTo: redirectPath,
       });
 
       if (signInResult?.error) {
         setError(labels.errorGeneric);
-        return;
       }
-
-      router.push(redirectPath);
-      router.refresh();
     });
   };
 
