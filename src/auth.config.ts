@@ -1,9 +1,9 @@
+import type { InferSelectModel } from 'drizzle-orm';
 import type { NextAuthConfig } from 'next-auth';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import Credentials from 'next-auth/providers/credentials';
 import GitHub from 'next-auth/providers/github';
 import Google from 'next-auth/providers/google';
-import type { InferSelectModel } from 'drizzle-orm';
 import { z } from 'zod';
 import { db } from '@/libs/DB';
 import { Env } from '@/libs/Env';
@@ -49,8 +49,7 @@ export const resolveRedirectUrl = (url: string | undefined, baseUrl: string) => 
     }
 
     return dashboardUrl;
-  }
-  catch {
+  } catch {
     return new URL(url, baseUrl).toString();
   }
 };
@@ -117,7 +116,7 @@ export const authConfig = {
           type: 'password',
         },
       },
-      authorize: (credentials) => authorizeWithEmailPassword(credentials),
+      authorize: credentials => authorizeWithEmailPassword(credentials),
     }),
   ],
   pages: {

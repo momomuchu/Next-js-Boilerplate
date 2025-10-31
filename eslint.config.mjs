@@ -29,6 +29,7 @@ export default antfu(
     // Ignored paths
     ignores: [
       'migrations/**/*',
+      'THEME_CUSTOMIZATION.md',
     ],
   },
   // --- Accessibility Rules ---

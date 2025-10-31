@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 
-export interface ArticleMetadata {
+export type ArticleMetadata = {
   title: string;
   description: string;
   date: string;
@@ -11,11 +11,11 @@ export interface ArticleMetadata {
   published: boolean;
   slug: string;
   locale: string;
-}
+};
 
-export interface Article extends ArticleMetadata {
+export type Article = {
   content: string;
-}
+} & ArticleMetadata;
 
 const articlesDirectory = path.join(process.cwd(), 'src/articles');
 
@@ -87,8 +87,7 @@ export function getArticleBySlug(slug: string, locale: string): Article | null {
       published: data.published,
       content,
     };
-  }
-  catch {
+  } catch {
     return null;
   }
 }
@@ -113,8 +112,7 @@ export function getAvailableLocales(): string[] {
       const itemPath = path.join(articlesDirectory, item);
       return fs.statSync(itemPath).isDirectory();
     });
-  }
-  catch {
+  } catch {
     return [];
   }
 }

@@ -10,16 +10,19 @@ describe('resolveRedirectUrl', () => {
 
   it('returns provided absolute url within same origin', () => {
     const url = 'https://example.com/dashboard/settings';
+
     expect(resolveRedirectUrl(url, baseUrl)).toBe(url);
   });
 
   it('normalizes relative urls against base', () => {
     const url = '/profile';
+
     expect(resolveRedirectUrl(url, baseUrl)).toBe('https://example.com/profile');
   });
 
   it('falls back to dashboard for external origins', () => {
     const url = 'https://malicious.example/dashboard';
+
     expect(resolveRedirectUrl(url, baseUrl)).toBe('https://example.com/dashboard/');
   });
 });
