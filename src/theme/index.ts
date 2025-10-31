@@ -57,5 +57,11 @@ export const getThemeVariant = (): ThemeVariant => {
   const root = document.documentElement;
   const theme = root.getAttribute('data-theme');
 
-  return (theme as ThemeVariant) || 'default';
+  // Validate theme value before returning
+  const validThemes: ThemeVariant[] = ['default', 'aurora', 'sunset', 'ocean'];
+  if (theme && validThemes.includes(theme as ThemeVariant)) {
+    return theme as ThemeVariant;
+  }
+
+  return 'default';
 };
