@@ -145,6 +145,7 @@ Developer experience first, extremely flexible code structure and only keep what
 - ⚡ [Next.js](https://nextjs.org) with App Router support
 - 🔥 Type checking [TypeScript](https://www.typescriptlang.org)
 - 💎 Integrate with [Tailwind CSS](https://tailwindcss.com)
+- 🎨 Unique Cosmic Purple theme with Tailwind CSS v4 custom properties, multiple theme variants (Aurora, Sunset, Ocean), and runtime color customization
 - ✅ Strict Mode for TypeScript and React 19
 - 🔒 Authentication with [Auth.js (NextAuth.js)](https://authjs.dev/): GitHub, Google, and email/password flows backed by secure database sessions.
 - 👤 Easily extend authentication by adding more OAuth providers or custom credential flows through Auth.js.
@@ -310,9 +311,13 @@ You can easily configure Next js Boilerplate by searching the entire project for
 - `public/apple-touch-icon.png`, `public/favicon.ico`, `public/favicon-16x16.png` and `public/favicon-32x32.png`: your website favicon
 - `src/utils/AppConfig.ts`: configuration file
 - `src/templates/BaseTemplate.tsx`: default theme
-- `src/theme/index.ts`: utilities to update the runtime color palette (`setThemePalette({ primary: '#1d4ed8', secondary: '#f97316' })`)
+- `src/styles/theme.css`: unique Cosmic Purple theme with CSS custom properties - easily customize colors, gradients, and design tokens
+- `src/styles/tailwind.config.css`: Tailwind CSS v4 configuration with brand color utilities
+- `src/theme/index.ts`: utilities to update the runtime color palette (`setThemePalette({ primary: '#8b5cf6', secondary: '#ec4899' })`) and switch theme variants (`setThemeVariant('aurora')`)
 - `next.config.ts`: Next.js configuration
 - `.env`: default environment variables
+
+For detailed information about the theme system, including how to use the unique Cosmic Purple brand colors, pre-configured theme variants (Aurora, Sunset, Ocean), and custom utility classes, see the [Theme Customization Guide](./THEME_CUSTOMIZATION.md).
 
 You have full access to the source code for further customization. The provided code is just an example to help you start your project. The sky's the limit 🚀.
 

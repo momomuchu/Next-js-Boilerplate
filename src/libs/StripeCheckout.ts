@@ -14,7 +14,7 @@ const lineItemSchema = z.object({
   priceData: priceDataSchema.optional(),
   quantity: z.number().int().positive().default(1),
 }).refine(
-  (value) => Boolean(value.price) || Boolean(value.priceData),
+  value => Boolean(value.price) || Boolean(value.priceData),
   {
     message: 'Provide either a `price` or `priceData` for each line item.',
     path: ['price'],
@@ -33,7 +33,7 @@ export const checkoutSessionSchema = z.object({
   customerEmail: z.string().email().optional(),
   allowPromotionCodes: z.boolean().optional(),
 }).refine(
-  (value) => value.priceId || (value.lineItems && value.lineItems.length > 0),
+  value => value.priceId || (value.lineItems && value.lineItems.length > 0),
   {
     message: 'Provide either a `priceId` or a `lineItems` array.',
     path: ['priceId'],
@@ -63,32 +63,32 @@ export const createCheckoutSession = async (
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[]
     = parsedInput.lineItems
-    ? parsedInput.lineItems.map((item) => {
-      if (item.priceData) {
-        return {
-          price_data: {
-            currency: item.priceData.currency,
-            unit_amount: item.priceData.unitAmount,
-            product_data: {
-              name: item.priceData.productName,
-              description: item.priceData.productDescription,
-            },
-          },
-          quantity: item.quantity ?? 1,
-        };
-      }
+      ? parsedInput.lineItems.map((item) => {
+          if (item.priceData) {
+            return {
+              price_data: {
+                currency: item.priceData.currency,
+                unit_amount: item.priceData.unitAmount,
+                product_data: {
+                  name: item.priceData.productName,
+                  description: item.priceData.productDescription,
+                },
+              },
+              quantity: item.quantity ?? 1,
+            };
+          }
 
-      return {
-        price: item.price!,
-        quantity: item.quantity ?? 1,
-      };
-    })
-    : [
-      {
-        price: parsedInput.priceId!,
-        quantity: parsedInput.quantity,
-      },
-    ];
+          return {
+            price: item.price!,
+            quantity: item.quantity ?? 1,
+          };
+        })
+      : [
+          {
+            price: parsedInput.priceId!,
+            quantity: parsedInput.quantity,
+          },
+        ];
 
   const successUrl = parsedInput.successUrl
     ?? `${buildAbsoluteUrl(options.baseUrl, options.successPath ?? '/stripe/success')}?session_id={CHECKOUT_SESSION_ID}`;

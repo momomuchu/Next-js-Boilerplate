@@ -1,4 +1,5 @@
 @import './theme.css';
+@import './tailwind.config.css';
 
 @layer theme, base, components, utilities;
 

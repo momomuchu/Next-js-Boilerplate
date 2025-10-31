@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { getArticleBySlug, getArticleSlugs, getAvailableLocales } from '@/utils/Articles';
 import { getBaseUrl } from '@/utils/Helpers';
 
-interface ArticlePageProps {
+type ArticlePageProps = {
   params: Promise<{
     slug: string;
     locale: string;
   }>;
-}
+};
 
 export async function generateStaticParams() {
   const locales = getAvailableLocales();

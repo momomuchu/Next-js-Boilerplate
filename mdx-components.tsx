@@ -6,10 +6,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h1 className="mb-4 text-4xl font-bold">{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mb-3 mt-6 text-3xl font-semibold">{children}</h2>
+      <h2 className="mt-6 mb-3 text-3xl font-semibold">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mb-2 mt-4 text-2xl font-semibold">{children}</h3>
+      <h3 className="mt-4 mb-2 text-2xl font-semibold">{children}</h3>
     ),
     p: ({ children }) => (
       <p className="mb-4 leading-7">{children}</p>

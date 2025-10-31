@@ -1,11 +1,11 @@
 # Validate commit messages
-#commit-msg:
+# commit-msg:
 #  commands:
 #    commitlint:
 #      run: npx --no -- commitlint --edit {1}
 
 # Validate content before committing
-#pre-commit:
+# pre-commit:
 #  commands:
 #    lint:
 #      glob: '*'
