@@ -1,6 +1,7 @@
 'use client';
 
 import type { ChangeEventHandler } from 'react';
+import { useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { usePathname } from '@/libs/I18nNavigation';
@@ -11,6 +12,11 @@ export const LocaleSwitcher = () => {
   const pathname = usePathname();
   const locale = useLocale();
   const t = useTranslations('LocaleSwitcher');
+
+  const labelMap = useMemo(() => ({
+    en: t('locale_en'),
+    fr: t('locale_fr'),
+  }), [t]);
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     router.push(`/${event.target.value}${pathname}`);
@@ -41,7 +47,7 @@ export const LocaleSwitcher = () => {
       >
         {routing.locales.map(elt => (
           <option key={elt} value={elt}>
-            {t(`locale_${elt}`)}
+            {labelMap[elt as keyof typeof labelMap] ?? elt.toUpperCase()}
           </option>
         ))}
       </select>

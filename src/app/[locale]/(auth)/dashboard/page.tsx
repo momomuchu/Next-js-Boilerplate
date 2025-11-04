@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CreditsPurchase } from '@/components/dashboard/CreditsPurchase';
 import { ManageBillingButton } from '@/components/dashboard/ManageBillingButton';
 import { Hello } from '@/components/Hello';
@@ -20,9 +20,10 @@ export async function generateMetadata(props: {
   };
 }
 
-export default async function Dashboard() {
+export default async function Dashboard(props: { params: Promise<{ locale: string }> }) {
+  const { locale } = await props.params;
+  setRequestLocale(locale);
   const t = await getTranslations('Dashboard');
-  const locale = t.locale;
   const profileUrl = getI18nPath('/dashboard/user-profile/', locale);
 
   const quickActions = [

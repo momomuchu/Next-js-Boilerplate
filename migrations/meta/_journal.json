@@ -15,6 +15,13 @@
       "when": 1761797728210,
       "tag": "0001_boring_roland_deschain",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1762274309669,
+      "tag": "0002_charming_nekra",
+      "breakpoints": true
     }
   ]
 }

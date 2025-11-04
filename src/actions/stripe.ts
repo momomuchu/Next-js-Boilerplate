@@ -15,7 +15,7 @@ import {
   checkoutSessionSchema,
   createCheckoutSession,
 } from '@/libs/StripeCheckout';
-import { payments, users } from '@/models/Schema';
+import { payments } from '@/models/Schema';
 
 export type CreateCheckoutSessionResult
   = | {
@@ -97,6 +97,7 @@ export const createOneTimeCheckoutSession = async (
   try {
     const baseUrl = await deriveBaseUrl();
     const stripeSession = await createCheckoutSession({
+      customerEmail: session.user.email ?? undefined,
       mode: 'payment',
       lineItems: [
         {
@@ -120,7 +121,6 @@ export const createOneTimeCheckoutSession = async (
       baseUrl,
       successPath: parsed.data.successPath,
       cancelPath: parsed.data.cancelPath,
-      stripeCustomerId: null,
     });
 
     const paymentIntentId = typeof stripeSession.payment_intent === 'string'
@@ -191,8 +191,10 @@ export const createBillingPortalSession = async (returnPath?: string): Promise<C
     };
   }
 
+  const userId = session.user.id;
+
   const userRecord = await db.query.users.findFirst({
-    where: (usersTable, { eq }) => eq(usersTable.id, session.user.id),
+    where: (usersTable, { eq }) => eq(usersTable.id, userId),
     columns: {
       stripeCustomerId: true,
     },
