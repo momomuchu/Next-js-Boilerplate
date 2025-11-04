@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { DemoBanner } from '@/components/DemoBanner';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
+import '@/styles/global.css';
 
 export default async function Layout(props: {
   children: React.ReactNode;

@@ -317,7 +317,17 @@ You can easily configure Next js Boilerplate by searching the entire project for
 - `next.config.ts`: Next.js configuration
 - `.env`: default environment variables
 
-For detailed information about the theme system, including how to use the unique Cosmic Purple brand colors, pre-configured theme variants (Aurora, Sunset, Ocean), and custom utility classes, see the [Theme Customization Guide](./THEME_CUSTOMIZATION.md).
+For detailed information about the theme system, including how to use the unique Cosmic Purple brand colors, pre-configured theme variants (Aurora, Sunset, Ocean), and custom utility classes, see the [Theme Customization Guide](./docs/guides/THEME_CUSTOMIZATION.md).
+
+## 📚 Documentation
+
+Comprehensive documentation is available in the `/docs` directory:
+
+- **[Getting Started](./docs/getting-started/)** - Quick start guides
+- **[Features](./docs/features/)** - Feature-specific documentation
+- **[Guides](./docs/guides/)** - How-to guides and tutorials
+- **[SEO](./docs/seo/)** - Search engine optimization
+- **[Full Documentation Index](./docs/README.md)** - Complete documentation overview
 
 You have full access to the source code for further customization. The provided code is just an example to help you start your project. The sky's the limit 🚀.
 
