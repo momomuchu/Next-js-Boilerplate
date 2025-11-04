@@ -2,10 +2,11 @@
   "RootLayout": {
     "home_link": "Home",
     "about_link": "About",
-    "counter_link": "Counter",
-    "portfolio_link": "Portfolio",
     "sign_in_link": "Sign in",
-    "sign_up_link": "Sign up"
+    "sign_up_link": "Sign up",
+    "privacy_link": "Privacy Policy",
+    "terms_link": "Terms of Service",
+    "cookies_link": "Cookie Policy"
   },
   "BaseTemplate": {
     "description": "Starter code for your Nextjs Boilerplate with Tailwind CSS",
@@ -35,6 +36,68 @@
     "meta_description": "About page description",
     "about_paragraph": "Welcome to our About page! We are a team of passionate individuals dedicated to creating amazing software.",
     "translation_powered_by": "Translation powered by"
+  },
+  "Privacy": {
+    "meta_title": "Privacy Policy",
+    "meta_description": "Our privacy policy outlines how we collect, use, and protect your personal information.",
+    "heading": "Privacy Policy",
+    "last_updated": "Last Updated: {date}",
+    "intro": "This Privacy Policy describes how we collect, use, and share your personal information when you use our services.",
+    "collection_heading": "Information We Collect",
+    "collection_content": "We collect information you provide directly to us, such as when you create an account, subscribe to our services, or contact us for support. This may include your name, email address, and any other information you choose to provide.",
+    "use_heading": "How We Use Your Information",
+    "use_content": "We use the information we collect to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.",
+    "sharing_heading": "Information Sharing",
+    "sharing_content": "We do not sell your personal information. We may share your information with service providers who perform services on our behalf, or when required by law.",
+    "security_heading": "Data Security",
+    "security_content": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, or destruction.",
+    "rights_heading": "Your Rights",
+    "rights_content": "You have the right to access, correct, or delete your personal information. You may also have the right to object to or restrict certain processing of your data.",
+    "contact_heading": "Contact Us",
+    "contact_content": "If you have questions about this Privacy Policy, please contact us at privacy@example.com."
+  },
+  "Terms": {
+    "meta_title": "Terms of Service",
+    "meta_description": "Terms and conditions governing the use of our services.",
+    "heading": "Terms of Service",
+    "last_updated": "Last Updated: {date}",
+    "intro": "By accessing and using our services, you agree to be bound by these Terms of Service.",
+    "acceptance_heading": "Acceptance of Terms",
+    "acceptance_content": "By accessing or using our service, you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the service.",
+    "use_heading": "Use of Service",
+    "use_content": "You agree to use the service only for lawful purposes and in accordance with these Terms. You are responsible for maintaining the confidentiality of your account credentials.",
+    "restrictions_heading": "Restrictions",
+    "restrictions_content": "You may not: (a) modify or copy the materials; (b) use the materials for any commercial purpose; (c) attempt to reverse engineer any software contained in the service; (d) remove any copyright or proprietary notations from the materials.",
+    "termination_heading": "Termination",
+    "termination_content": "We may terminate or suspend your account and access to the service immediately, without prior notice or liability, for any reason, including breach of these Terms.",
+    "limitation_heading": "Limitation of Liability",
+    "limitation_content": "In no event shall we be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
+    "changes_heading": "Changes to Terms",
+    "changes_content": "We reserve the right to modify or replace these Terms at any time. We will provide notice of any changes by posting the new Terms on this page.",
+    "contact_heading": "Contact Us",
+    "contact_content": "If you have questions about these Terms, please contact us at legal@example.com."
+  },
+  "Cookies": {
+    "meta_title": "Cookie Policy",
+    "meta_description": "Information about how we use cookies and similar technologies.",
+    "heading": "Cookie Policy",
+    "last_updated": "Last Updated: {date}",
+    "intro": "This Cookie Policy explains how we use cookies and similar technologies to recognize you when you visit our website.",
+    "what_heading": "What Are Cookies",
+    "what_content": "Cookies are small pieces of text sent to your web browser by a website you visit. A cookie file is stored in your web browser and allows the service or a third-party to recognize you and make your next visit easier and the service more useful to you.",
+    "use_heading": "How We Use Cookies",
+    "use_content": "We use cookies to understand how you use our service and to improve your experience. This includes personalizing content and advertising, providing social media features, and analyzing our traffic.",
+    "types_heading": "Types of Cookies We Use",
+    "types_essential": "Essential Cookies: Required for the operation of our website.",
+    "types_analytics": "Analytics Cookies: Help us understand how visitors interact with our website.",
+    "types_functional": "Functional Cookies: Enable personalized features and remember your preferences.",
+    "types_advertising": "Advertising Cookies: Used to deliver relevant advertisements to you.",
+    "control_heading": "How to Control Cookies",
+    "control_content": "You can control and manage cookies in various ways. Please note that removing or blocking cookies can impact your user experience and some functionality may no longer be available.",
+    "browser_heading": "Browser Settings",
+    "browser_content": "Most web browsers allow you to control cookies through their settings preferences. However, limiting cookies may impact your experience of our website.",
+    "contact_heading": "Contact Us",
+    "contact_content": "If you have questions about our use of cookies, please contact us at privacy@example.com."
   },
   "Portfolio": {
     "meta_title": "Portfolio",
@@ -88,7 +151,12 @@
   "Dashboard": {
     "meta_title": "Dashboard",
     "hello_message": "Hello {email}!",
-    "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>."
+    "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>.",
+    "badge_label": "You're all set",
+    "greeting_title": "Welcome back, {name}",
+    "greeting_subtitle": "This is your hub for projects, metrics, and upcoming work. Everything stays in sync across devices and themes.",
+    "email_caption": "Signed in as",
+    "guest_label": "there"
   },
   "UserProfile": {
     "meta_title": "User Profile",
