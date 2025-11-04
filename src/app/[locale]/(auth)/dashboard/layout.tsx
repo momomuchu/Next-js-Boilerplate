@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
 import { AuthSignOutButton } from '@/components/AuthButtons';
+import { ManageBillingButton } from '@/components/dashboard/ManageBillingButton';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 import { getI18nPath } from '@/utils/Helpers';
@@ -33,7 +34,7 @@ export default async function DashboardLayout(props: {
           <li>
             <Link
               href={dashboardUrl}
-              className="border-none text-gray-700 hover:text-gray-900"
+              className="text-sm font-semibold text-text-secondary transition-colors hover:text-primary"
             >
               {t('dashboard_link')}
             </Link>
@@ -41,7 +42,7 @@ export default async function DashboardLayout(props: {
           <li>
             <Link
               href={profileUrl}
-              className="border-none text-gray-700 hover:text-gray-900"
+              className="text-sm font-semibold text-text-secondary transition-colors hover:text-primary"
             >
               {t('user_profile_link')}
             </Link>
@@ -51,8 +52,11 @@ export default async function DashboardLayout(props: {
       rightNav={(
         <>
           <li>
+            <ManageBillingButton variant="ghost" />
+          </li>
+          <li>
             <AuthSignOutButton
-              className="border-none text-gray-700 hover:text-gray-900"
+              className="text-sm font-semibold text-text-secondary transition-colors hover:text-primary"
               callbackUrl={afterSignOutUrl}
             >
               {t('sign_out')}

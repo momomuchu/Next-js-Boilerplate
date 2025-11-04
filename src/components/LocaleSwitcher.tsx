@@ -1,7 +1,7 @@
 'use client';
 
 import type { ChangeEventHandler } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { usePathname } from '@/libs/I18nNavigation';
 import { routing } from '@/libs/I18nRouting';
@@ -10,6 +10,7 @@ export const LocaleSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
+  const t = useTranslations('LocaleSwitcher');
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     router.push(`/${event.target.value}${pathname}`);
@@ -35,12 +36,12 @@ export const LocaleSwitcher = () => {
       <select
         defaultValue={locale}
         onChange={handleChange}
-        className="border-input-border bg-surface-input text-text-on-surface hover:border-primary/50 focus:border-primary focus:ring-primary/30 appearance-none rounded-lg border py-2.5 pr-10 pl-10 text-sm font-medium transition-all duration-200 focus:ring-2 focus:outline-none"
-        aria-label="lang-switcher"
+        className="border-input-border bg-surface-input text-text-on-surface hover:border-primary/50 focus:border-primary focus:ring-primary/30 appearance-none rounded-lg border py-2.5 pr-10 pl-10 text-sm font-semibold uppercase tracking-wide transition-all duration-200 focus:ring-2 focus:outline-none"
+        aria-label={t('aria_label')}
       >
         {routing.locales.map(elt => (
           <option key={elt} value={elt}>
-            {elt.toUpperCase()}
+            {t(`locale_${elt}`)}
           </option>
         ))}
       </select>

@@ -156,7 +156,22 @@
     "greeting_title": "Welcome back, {name}",
     "greeting_subtitle": "This is your hub for projects, metrics, and upcoming work. Everything stays in sync across devices and themes.",
     "email_caption": "Signed in as",
-    "guest_label": "there"
+    "guest_label": "there",
+    "quick_actions_title": "Quick actions",
+    "quick_actions_subtitle": "Jump straight into what matters next.",
+    "action_new_project": "Start a new project",
+    "action_new_project_desc": "Kick off a fresh idea in minutes with best-practice templates.",
+    "action_view_docs": "Review documentation",
+    "action_view_docs_desc": "Look over integration notes and deployment guides.",
+    "action_open_settings": "Open workspace settings",
+    "action_open_settings_desc": "Manage team access, billing, and security policies.",
+    "manage_account_label": "Account & billing",
+    "manage_account_title": "Manage your account from one place",
+    "manage_account_subtitle": "Keep your billing details, team access, and security policies aligned with how your product grows.",
+    "manage_account_profile_cta": "Edit profile & security",
+    "manage_account_point_billing": "Update payment method, download invoices, or change plans in Stripe Billing.",
+    "manage_account_point_profile": "Edit profile information and connected identity providers in seconds.",
+    "manage_account_point_security": "Review device logins and enable passwordless authentication for your team."
   },
   "UserProfile": {
     "meta_title": "User Profile",
@@ -173,5 +188,39 @@
     "dashboard_link": "Dashboard",
     "user_profile_link": "Manage your account",
     "sign_out": "Sign out"
+  },
+  "DashboardBilling": {
+    "manage_billing_cta": "Manage billing",
+    "opening_portal": "Opening billing portal…",
+    "missing_customer": "We couldn't find billing information for this workspace yet.",
+    "not_authenticated": "Please sign in to manage billing.",
+    "generic_error": "Unable to open the billing portal right now. Try again in a few moments."
+  },
+  "DashboardPayments": {
+    "label": "Buy credits",
+    "title": "Top up usage-based credits",
+    "subtitle": "Choose a credit pack that suits your workload. Credits never expire and apply instantly.",
+    "credits_included": "{credits} credits included",
+    "note": "Need a larger package or custom billing? Reach out to our team and we can tailor a plan for you.",
+    "generic_error": "We couldn't start the checkout session. Please try again.",
+    "error_unauthenticated": "Please sign in to buy credits.",
+    "error_validation": "That credit package is no longer available.",
+    "error_stripe": "Stripe rejected the request. Check your billing details and try again.",
+    "packages": {
+      "starter": {
+        "name": "Starter pack"
+      },
+      "builder": {
+        "name": "Builder pack"
+      },
+      "scale": {
+        "name": "Scale pack"
+      }
+    }
+  },
+  "LocaleSwitcher": {
+    "aria_label": "Select language",
+    "locale_en": "English",
+    "locale_fr": "Français"
   }
 }

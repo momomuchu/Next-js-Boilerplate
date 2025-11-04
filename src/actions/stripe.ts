@@ -8,12 +8,14 @@ import { auth } from '@/auth';
 import { db } from '@/libs/DB';
 import { Env } from '@/libs/Env';
 import { logger } from '@/libs/Logger';
+import { creditPackageCatalog, type CreditPackageId } from '@/config/credits';
+import { stripe } from '@/libs/Stripe';
 import {
 
   checkoutSessionSchema,
   createCheckoutSession,
 } from '@/libs/StripeCheckout';
-import { payments } from '@/models/Schema';
+import { payments, users } from '@/models/Schema';
 
 export type CreateCheckoutSessionResult
   = | {
@@ -107,7 +109,10 @@ export const createOneTimeCheckoutSession = async (
           quantity: 1,
         },
       ],
-      metadata: parsed.data.metadata,
+      metadata: {
+        ...(parsed.data.metadata ?? {}),
+        userId: session.user.id,
+      },
       allowPromotionCodes: parsed.data.allowPromotionCodes,
       successUrl: parsed.data.successUrl,
       cancelUrl: parsed.data.cancelUrl,
@@ -115,6 +120,7 @@ export const createOneTimeCheckoutSession = async (
       baseUrl,
       successPath: parsed.data.successPath,
       cancelPath: parsed.data.cancelPath,
+      stripeCustomerId: null,
     });
 
     const paymentIntentId = typeof stripeSession.payment_intent === 'string'
@@ -161,6 +167,110 @@ export const createOneTimeCheckoutSession = async (
       message: 'Unexpected error while creating checkout session.',
     };
   }
+};
+
+export type CreateBillingPortalSessionResult
+  = | {
+    success: true;
+    url: string;
+  }
+  | {
+    success: false;
+    code: 'UNAUTHENTICATED' | 'MISSING_CUSTOMER' | 'STRIPE_ERROR' | 'UNKNOWN_ERROR';
+    message: string;
+  };
+
+export const createBillingPortalSession = async (returnPath?: string): Promise<CreateBillingPortalSessionResult> => {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    return {
+      success: false,
+      code: 'UNAUTHENTICATED',
+      message: 'You need to sign in before managing billing.',
+    };
+  }
+
+  const userRecord = await db.query.users.findFirst({
+    where: (usersTable, { eq }) => eq(usersTable.id, session.user.id),
+    columns: {
+      stripeCustomerId: true,
+    },
+  });
+
+  if (!userRecord?.stripeCustomerId) {
+    return {
+      success: false,
+      code: 'MISSING_CUSTOMER',
+      message: 'No Stripe customer found for this account.',
+    };
+  }
+
+  try {
+    const baseUrl = await deriveBaseUrl();
+    const returnUrl = returnPath
+      ? new URL(returnPath, baseUrl).toString()
+      : baseUrl;
+
+    const portalSession = await stripe.billingPortal.sessions.create({
+      customer: userRecord.stripeCustomerId,
+      return_url: returnUrl,
+    });
+
+    return {
+      success: true,
+      url: portalSession.url,
+    };
+  } catch (error) {
+    if (error instanceof Stripe.errors.StripeError) {
+      logger.error('Stripe billing portal session creation failed', {
+        requestId: error.requestId,
+        type: error.type,
+        code: error.code,
+        message: error.message,
+      });
+
+      return {
+        success: false,
+        code: 'STRIPE_ERROR',
+        message: 'Unable to open billing portal.',
+      };
+    }
+
+    logger.error('Unexpected error in createBillingPortalSession', { error });
+
+    return {
+      success: false,
+      code: 'UNKNOWN_ERROR',
+      message: 'Unexpected error while creating billing portal session.',
+    };
+  }
+};
+
+export const createCreditsCheckoutSession = async (packageId: CreditPackageId): Promise<CreateOneTimeCheckoutSessionResult> => {
+  const pkg = creditPackageCatalog[packageId];
+
+  if (!pkg) {
+    return {
+      success: false,
+      code: 'VALIDATION_ERROR',
+      message: 'Unknown credit package.',
+    };
+  }
+
+  return createOneTimeCheckoutSession({
+    amount: pkg.amount,
+    currency: pkg.currency,
+    productName: pkg.productName,
+    productDescription: pkg.productDescription,
+    metadata: {
+      packageId,
+      credits: pkg.credits.toString(),
+      purchaseType: 'credit_pack',
+    },
+    successPath: '/dashboard?payment=success',
+    cancelPath: '/dashboard?payment=cancel',
+  });
 };
 
 export const createStripeCheckoutSession = async (input: CheckoutSessionInput): Promise<CreateCheckoutSessionResult> => {

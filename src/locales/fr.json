@@ -150,13 +150,28 @@
   },
   "Dashboard": {
     "meta_title": "Tableau de bord",
-    "hello_message": "Bonjour {email}!",
+    "hello_message": "Bonjour {email} !",
     "alternative_message": "Vous voulez créer votre SaaS plus rapidement en utilisant la même stack ? Essayez <url></url>.",
     "badge_label": "Tout est prêt",
     "greeting_title": "Bon retour parmi nous, {name}",
     "greeting_subtitle": "Votre espace de travail centralise projets, métriques et prochaines tâches. Tout reste synchronisé, quel que soit le thème utilisé.",
     "email_caption": "Connecté en tant que",
-    "guest_label": "cher utilisateur"
+    "guest_label": "cher utilisateur",
+    "quick_actions_title": "Actions rapides",
+    "quick_actions_subtitle": "Accédez immédiatement à vos prochaines étapes.",
+    "action_new_project": "Créer un nouveau projet",
+    "action_new_project_desc": "Lancez une nouvelle idée en quelques minutes avec nos modèles.",
+    "action_view_docs": "Consulter la documentation",
+    "action_view_docs_desc": "Passez en revue les notes d'intégration et les guides de déploiement.",
+    "action_open_settings": "Ouvrir les paramètres",
+    "action_open_settings_desc": "Gérez les accès de l'équipe, la facturation et les politiques de sécurité.",
+    "manage_account_label": "Compte et facturation",
+    "manage_account_title": "Gérez votre compte en un seul endroit",
+    "manage_account_subtitle": "Gardez vos informations de facturation, les accès de l'équipe et vos politiques de sécurité alignés sur l'évolution de votre produit.",
+    "manage_account_profile_cta": "Modifier profil et sécurité",
+    "manage_account_point_billing": "Mettez à jour le moyen de paiement, téléchargez vos factures ou changez de plan via Stripe Billing.",
+    "manage_account_point_profile": "Modifiez en quelques secondes vos informations de profil et les fournisseurs d'identité connectés.",
+    "manage_account_point_security": "Consultez les connexions des appareils et activez l'authentification sans mot de passe pour votre équipe."
   },
   "UserProfile": {
     "meta_title": "Profil de l'utilisateur",
@@ -173,5 +188,39 @@
     "dashboard_link": "Tableau de bord",
     "user_profile_link": "Gérer votre compte",
     "sign_out": "Se déconnecter"
+  },
+  "DashboardBilling": {
+    "manage_billing_cta": "Gérer la facturation",
+    "opening_portal": "Ouverture du portail de facturation…",
+    "missing_customer": "Aucune information de facturation trouvée pour cet espace de travail pour le moment.",
+    "not_authenticated": "Veuillez vous connecter pour gérer la facturation.",
+    "generic_error": "Impossible d'ouvrir le portail de facturation pour le moment. Réessayez dans quelques instants."
+  },
+  "DashboardPayments": {
+    "label": "Acheter des crédits",
+    "title": "Rechargez vos crédits à l'usage",
+    "subtitle": "Choisissez un pack adapté à votre charge de travail. Les crédits n'expirent jamais et sont appliqués immédiatement.",
+    "credits_included": "{credits} crédits inclus",
+    "note": "Besoin d'un pack plus important ou d'une facturation personnalisée ? Contactez-nous pour construire une offre sur mesure.",
+    "generic_error": "Impossible de démarrer la session de paiement. Veuillez réessayer.",
+    "error_unauthenticated": "Veuillez vous connecter pour acheter des crédits.",
+    "error_validation": "Ce pack de crédits n'est plus disponible.",
+    "error_stripe": "Stripe a refusé la requête. Vérifiez vos informations de facturation et réessayez.",
+    "packages": {
+      "starter": {
+        "name": "Pack Découverte"
+      },
+      "builder": {
+        "name": "Pack Constructeur"
+      },
+      "scale": {
+        "name": "Pack Croissance"
+      }
+    }
+  },
+  "LocaleSwitcher": {
+    "aria_label": "Changer de langue",
+    "locale_en": "Anglais",
+    "locale_fr": "Français"
   }
 }

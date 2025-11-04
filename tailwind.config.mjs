@@ -45,6 +45,8 @@ export default {
         // Hero section colors
         'hero': {
           foreground: 'var(--color-hero-foreground)',
+          muted: 'var(--color-hero-muted)',
+          border: 'var(--color-hero-border)',
         },
 
         // Surface colors for cards, inputs, etc.
@@ -59,6 +61,18 @@ export default {
           border: 'var(--color-input-border)',
         },
 
+        // Background colors
+        'bg': {
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+        },
+
+        // Text colors
+        'text': {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+        },
+
         // Text colors for surfaces
         'text-on-surface': 'var(--color-text-on-surface)',
         'text-muted-on-surface': 'var(--color-text-muted-on-surface)',
@@ -71,9 +85,9 @@ export default {
        * - shadow-soft, shadow-elevated, shadow-button
        */
       boxShadow: {
-        soft: 'var(--shadow-soft)',
-        elevated: 'var(--shadow-elevated)',
-        button: 'var(--shadow-button)',
+        'soft': 'var(--shadow-soft)',
+        'elevated': 'var(--shadow-elevated)',
+        'button': 'var(--shadow-button)',
         'glow-primary': '0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.15)',
         'glow-secondary': '0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.15)',
         'inner-glow': 'inset 0 0 20px rgba(255, 255, 255, 0.1)',
@@ -98,9 +112,9 @@ export default {
        * Matching the values used in theme.css
        */
       borderRadius: {
-        card: 'clamp(1.5rem, 2.5vw, 1.85rem)',
-        input: '1rem',
-        error: '0.9rem',
+        'card': 'clamp(1.5rem, 2.5vw, 1.85rem)',
+        'input': '1rem',
+        'error': '0.9rem',
         '4xl': '2rem',
       },
 
@@ -126,6 +140,7 @@ export default {
         'float': 'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'glow': 'glow 2s ease-in-out infinite',
+        'shake': 'shake 0.4s ease-in-out',
       },
 
       keyframes: {
@@ -165,15 +180,20 @@ export default {
           '0%, 100%': { opacity: '0.5' },
           '50%': { opacity: '1' },
         },
+        shake: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-4px)' },
+          '20%, 40%, 60%, 80%': { transform: 'translateX(4px)' },
+        },
       },
 
       /**
        * Custom spacing for consistent layouts
        */
       spacing: {
-        '18': '4.5rem',
-        '112': '28rem',
-        '128': '32rem',
+        18: '4.5rem',
+        112: '28rem',
+        128: '32rem',
       },
     },
   },

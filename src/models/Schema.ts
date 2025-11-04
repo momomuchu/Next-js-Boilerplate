@@ -33,6 +33,7 @@ export const users = pgTable('user', {
   emailVerified: timestamp('emailVerified', { mode: 'date' }),
   passwordHash: text('password_hash'),
   image: text('image'),
+  stripeCustomerId: text('stripe_customer_id'),
 });
 
 export const accounts = pgTable('account', {
@@ -90,6 +91,7 @@ export const payments = pgTable('payment', {
     .references(() => users.id, { onDelete: 'set null' }),
   stripeSessionId: text('stripe_session_id').notNull().unique(),
   stripePaymentIntentId: text('stripe_payment_intent_id'),
+  stripeCustomerId: text('stripe_customer_id'),
   amount: integer('amount').notNull(),
   currency: text('currency').notNull(),
   status: text('status').notNull().default('pending'),

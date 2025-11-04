@@ -1,8 +1,11 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { DarkModeToggle } from '@/components/DarkModeToggle';
 import { DemoBanner } from '@/components/DemoBanner';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
+import { AppConfig } from '@/utils/AppConfig';
 import '@/styles/global.css';
 
 export default async function Layout(props: {
@@ -25,7 +28,15 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/"
-                className="border-none text-gray-700 hover:text-gray-900"
+                className="text-lg font-semibold text-text-primary transition-colors hover:text-primary"
+              >
+                {AppConfig.name}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/"
+                className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
               >
                 {t('home_link')}
               </Link>
@@ -33,34 +44,10 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/about/"
-                className="border-none text-gray-700 hover:text-gray-900"
+                className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
               >
                 {t('about_link')}
               </Link>
-            </li>
-            <li>
-              <Link
-                href="/counter/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('counter_link')}
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/portfolio/"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('portfolio_link')}
-              </Link>
-            </li>
-            <li>
-              <a
-                className="border-none text-gray-700 hover:text-gray-900"
-                href="https://github.com/ixartz/Next-js-Boilerplate"
-              >
-                GitHub
-              </a>
             </li>
           </>
         )}
@@ -69,28 +56,62 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/sign-in/"
-                className="border-none text-gray-700 hover:text-gray-900"
+                className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
               >
                 {t('sign_in_link')}
               </Link>
             </li>
-
             <li>
               <Link
                 href="/sign-up/"
-                className="border-none text-gray-700 hover:text-gray-900"
+                className="rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-[var(--color-primary-strong)]"
               >
                 {t('sign_up_link')}
               </Link>
             </li>
-
+            <li>
+              <DarkModeToggle />
+            </li>
+            <li>
+              <ThemeSwitcher />
+            </li>
             <li>
               <LocaleSwitcher />
             </li>
           </>
         )}
       >
-        <div className="py-5 text-xl [&_p]:my-6">{props.children}</div>
+        {props.children}
+
+        <footer className="border-t border-surface-border bg-bg-secondary transition-colors">
+          <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+              <div className="text-sm text-text-secondary transition-colors">
+                {`© Copyright ${new Date().getFullYear()} ${AppConfig.name}.`}
+              </div>
+              <div className="flex gap-6">
+                <Link
+                  href="/privacy/"
+                  className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                >
+                  {t('privacy_link')}
+                </Link>
+                <Link
+                  href="/terms/"
+                  className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                >
+                  {t('terms_link')}
+                </Link>
+                <Link
+                  href="/cookies/"
+                  className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                >
+                  {t('cookies_link')}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </footer>
       </BaseTemplate>
     </>
   );

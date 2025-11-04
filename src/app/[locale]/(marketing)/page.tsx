@@ -26,10 +26,10 @@ export default async function Index(props: IIndexProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="-mx-1 -my-5">
+    <>
       <Hero />
       <Features />
       <CTA />
-    </div>
+    </>
   );
 };

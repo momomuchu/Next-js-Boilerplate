@@ -28,28 +28,31 @@ export default async function About(props: IAboutProps) {
   });
 
   return (
-    <>
-      <p>{t('about_paragraph')}</p>
+    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="prose prose-slate mx-auto">
+        <h1 className="text-4xl font-bold tracking-tight text-slate-900">{t('meta_title')}</h1>
+        <p className="mt-6 text-lg leading-8 text-slate-600">{t('about_paragraph')}</p>
 
-      <div className="mt-2 text-center text-sm">
-        {`${t('translation_powered_by')} `}
-        <a
-          className="text-blue-700 hover:border-b-2 hover:border-blue-700"
-          href="https://l.crowdin.com/next-js"
-        >
-          Crowdin
+        <div className="mt-8 text-center text-sm text-slate-600">
+          {`${t('translation_powered_by')} `}
+          <a
+            className="font-medium text-[var(--color-primary)] transition-colors hover:text-[var(--color-primary-strong)]"
+            href="https://l.crowdin.com/next-js"
+          >
+            Crowdin
+          </a>
+        </div>
+
+        <a href="https://l.crowdin.com/next-js" className="mt-4 block text-center">
+          <Image
+            className="mx-auto"
+            src="/assets/images/crowdin-dark.png"
+            alt="Crowdin Translation Management System"
+            width={128}
+            height={26}
+          />
         </a>
       </div>
-
-      <a href="https://l.crowdin.com/next-js">
-        <Image
-          className="mx-auto mt-2"
-          src="/assets/images/crowdin-dark.png"
-          alt="Crowdin Translation Management System"
-          width={128}
-          height={26}
-        />
-      </a>
-    </>
+    </div>
   );
 };

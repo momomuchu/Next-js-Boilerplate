@@ -5,7 +5,7 @@ import { db } from '@/libs/DB';
 import { Env } from '@/libs/Env';
 import { logger } from '@/libs/Logger';
 import { stripe } from '@/libs/Stripe';
-import { payments } from '@/models/Schema';
+import { payments, users } from '@/models/Schema';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -86,10 +86,32 @@ export async function POST(request: Request) {
             updates.currency = session.currency.toLowerCase();
           }
 
+          if (typeof session.customer === 'string') {
+            updates.stripeCustomerId = session.customer;
+          }
+
           await db
             .update(payments)
             .set(updates)
             .where(eq(payments.stripeSessionId, session.id));
+
+          if (typeof session.customer === 'string') {
+            const paymentRecord = await db.query.payments.findFirst({
+              where: (payment, { eq: eqQuery }) => eqQuery(payment.stripeSessionId, session.id),
+              columns: {
+                userId: true,
+              },
+            });
+
+            if (paymentRecord?.userId) {
+              await db
+                .update(users)
+                .set({
+                  stripeCustomerId: session.customer,
+                })
+                .where(eq(users.id, paymentRecord.userId));
+            }
+          }
         }
 
         logger.info('Stripe checkout session completed', {

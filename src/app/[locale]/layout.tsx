@@ -49,8 +49,8 @@ export default async function RootLayout(props: {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} className="h-full dark">
+      <body className="h-full antialiased">
         <NextIntlClientProvider>
           <PostHogProvider>
             {props.children}

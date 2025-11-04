@@ -112,7 +112,7 @@ function GradientExample() {
 
 ```jsx
 function BorderExample() {
-  return <div className="border-2 border-brand">Brand colored border</div>;
+  return <div className="border-brand border-2">Brand colored border</div>;
 }
 ```
 
