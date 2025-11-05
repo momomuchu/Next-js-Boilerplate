@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function CTA() {
   return (
-    <section className="bg-gradient-hero relative overflow-hidden px-4 py-20 text-hero-foreground transition-colors sm:px-6 sm:py-24 lg:px-8">
+    <section className="bg-gradient-hero text-hero-foreground relative overflow-hidden px-4 py-20 transition-colors sm:px-6 sm:py-24 lg:px-8">
       {/* Subtle background element */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <span
@@ -13,14 +13,14 @@ export function CTA() {
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* Headline - direct and clear */}
-        <h2 className="mb-6 text-4xl leading-tight font-extrabold text-hero-foreground transition-colors sm:text-5xl md:text-6xl">
+        <h2 className="text-hero-foreground mb-6 text-4xl leading-tight font-extrabold transition-colors sm:text-5xl md:text-6xl">
           Stop configuring.
           <br />
           Start shipping.
         </h2>
 
         {/* Subheadline - benefit-focused */}
-        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-hero-muted transition-colors sm:text-xl">
+        <p className="text-hero-muted mx-auto mb-10 max-w-2xl text-lg leading-relaxed transition-colors sm:text-xl">
           Join 100,000+ developers who chose to build features instead of boilerplate. Free forever, open source.
         </p>
 
@@ -46,9 +46,9 @@ export function CTA() {
         </Link>
 
         {/* Trust signals - compact */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-hero-muted transition-colors">
+        <div className="text-hero-muted mt-10 flex flex-wrap items-center justify-center gap-6 text-sm transition-colors">
           <div className="flex items-center gap-2">
-            <svg className="size-4 text-hero-foreground transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="text-hero-foreground size-4 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             No credit card
@@ -58,7 +58,7 @@ export function CTA() {
             style={{ backgroundColor: 'var(--color-hero-muted)' }}
           />
           <div className="flex items-center gap-2">
-            <svg className="size-4 text-hero-foreground transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="text-hero-foreground size-4 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             MIT License
@@ -68,7 +68,7 @@ export function CTA() {
             style={{ backgroundColor: 'var(--color-hero-muted)' }}
           />
           <div className="flex items-center gap-2">
-            <svg className="size-4 text-hero-foreground transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="text-hero-foreground size-4 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             Deploy in minutes

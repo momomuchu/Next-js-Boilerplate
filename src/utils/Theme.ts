@@ -39,4 +39,3 @@ export function applyTheme(theme: ThemeType): void {
     document.documentElement.setAttribute('data-theme', theme);
   }
 }
-

@@ -34,7 +34,7 @@ export default async function DashboardLayout(props: {
           <li>
             <Link
               href={dashboardUrl}
-              className="text-sm font-semibold text-text-secondary transition-colors hover:text-primary"
+              className="text-text-secondary hover:text-primary text-sm font-semibold transition-colors"
             >
               {t('dashboard_link')}
             </Link>
@@ -42,7 +42,7 @@ export default async function DashboardLayout(props: {
           <li>
             <Link
               href={profileUrl}
-              className="text-sm font-semibold text-text-secondary transition-colors hover:text-primary"
+              className="text-text-secondary hover:text-primary text-sm font-semibold transition-colors"
             >
               {t('user_profile_link')}
             </Link>
@@ -56,7 +56,7 @@ export default async function DashboardLayout(props: {
           </li>
           <li>
             <AuthSignOutButton
-              className="text-sm font-semibold text-text-secondary transition-colors hover:text-primary"
+              className="text-text-secondary hover:text-primary text-sm font-semibold transition-colors"
               callbackUrl={afterSignOutUrl}
             >
               {t('sign_out')}

@@ -9,9 +9,9 @@ export const Hello = async () => {
   const baseIdentifier = session?.user?.name || identifierFromEmail || t('guest_label');
 
   return (
-    <section className="relative overflow-hidden rounded-3xl border border-surface-border bg-surface-card p-8 text-text-on-surface shadow-elevated transition-colors">
+    <section className="border-surface-border bg-surface-card text-text-on-surface shadow-elevated relative overflow-hidden rounded-3xl border p-8 transition-colors">
       <div
-        className="pointer-events-none absolute -right-32 -top-24 hidden size-[28rem] rounded-full bg-[var(--color-primary)] opacity-30 blur-3xl sm:inline"
+        className="pointer-events-none absolute -top-24 -right-32 hidden size-[28rem] rounded-full bg-[var(--color-primary)] opacity-30 blur-3xl sm:inline"
         aria-hidden="true"
       />
       <div
@@ -20,7 +20,7 @@ export const Hello = async () => {
       />
 
       <div className="relative flex flex-col gap-6">
-        <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-text-muted-on-surface">
+        <span className="text-text-muted-on-surface inline-flex items-center gap-2 text-sm font-semibold tracking-wide uppercase">
           <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -32,19 +32,19 @@ export const Hello = async () => {
           {t('badge_label')}
         </span>
 
-        <h1 className="text-3xl font-semibold leading-tight tracking-tight text-text-on-surface sm:text-4xl">
+        <h1 className="text-text-on-surface text-3xl leading-tight font-semibold tracking-tight sm:text-4xl">
           {t('greeting_title', { name: baseIdentifier })}
         </h1>
 
-        <p className="max-w-2xl text-base text-text-muted-on-surface sm:text-lg">
+        <p className="text-text-muted-on-surface max-w-2xl text-base sm:text-lg">
           {t('greeting_subtitle')}
         </p>
 
-        <div className="flex w-full flex-wrap items-center gap-2 rounded-2xl border border-surface-border/70 bg-bg-secondary/60 px-4 py-3 text-sm text-text-muted-on-surface transition-colors dark:bg-slate-900/40">
-          <span className="font-medium text-text-on-surface">
+        <div className="border-surface-border/70 bg-bg-secondary/60 text-text-muted-on-surface flex w-full flex-wrap items-center gap-2 rounded-2xl border px-4 py-3 text-sm transition-colors dark:bg-slate-900/40">
+          <span className="text-text-on-surface font-medium">
             {t('email_caption')}
           </span>
-          <code className="rounded-lg bg-white/20 px-2 py-1 text-sm font-medium text-text-on-surface dark:bg-white/10">
+          <code className="text-text-on-surface rounded-lg bg-white/20 px-2 py-1 text-sm font-medium dark:bg-white/10">
             {email || t('guest_label')}
           </code>
         </div>

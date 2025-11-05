@@ -28,7 +28,7 @@ export default async function Privacy(props: IPrivacyProps) {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="prose prose-slate mx-auto max-w-none dark:prose-invert">
+      <div className="prose prose-slate dark:prose-invert mx-auto max-w-none">
         <h1 className="text-4xl font-bold tracking-tight">{t('heading')}</h1>
         <p className="text-sm text-slate-600 dark:text-slate-400">
           {t('last_updated', { date: new Date().toLocaleDateString() })}

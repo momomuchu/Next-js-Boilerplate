@@ -1,1 +1,1 @@
-export const DemoBanner = () => null
+export const DemoBanner = () => null;

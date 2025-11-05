@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import Link from 'next/link';
 import { CreditsPurchase } from '@/components/dashboard/CreditsPurchase';
 import { ManageBillingButton } from '@/components/dashboard/ManageBillingButton';
 import { Hello } from '@/components/Hello';
@@ -33,7 +33,7 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
       description: t('action_new_project_desc'),
       href: '#',
       icon: (
-        <svg className="size-4 text-primary" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <svg className="text-primary size-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
       ),
@@ -44,7 +44,7 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
       description: t('action_view_docs_desc'),
       href: '#',
       icon: (
-        <svg className="size-4 text-primary" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <svg className="text-primary size-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -59,7 +59,7 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
       description: t('action_open_settings_desc'),
       href: profileUrl,
       icon: (
-        <svg className="size-4 text-primary" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <svg className="text-primary size-4" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -72,22 +72,22 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
   ];
 
   return (
-    <main className="relative min-h-screen bg-bg-primary px-6 py-12 text-text-primary transition-colors sm:px-8">
+    <main className="bg-bg-primary text-text-primary relative min-h-screen px-6 py-12 transition-colors sm:px-8">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <span className="absolute right-[-12rem] top-[-6rem] hidden size-[28rem] rounded-full bg-[var(--color-primary)] opacity-20 blur-[120px] lg:inline" />
+        <span className="absolute top-[-6rem] right-[-12rem] hidden size-[28rem] rounded-full bg-[var(--color-primary)] opacity-20 blur-[120px] lg:inline" />
         <span className="absolute bottom-[-10rem] left-[-8rem] hidden size-[24rem] rounded-full bg-[var(--color-secondary)] opacity-15 blur-[140px] md:inline" />
       </div>
 
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <header className="grid gap-6 lg:grid-cols-[2fr,1fr]">
           <Hello />
-          <aside className="rounded-3xl border border-surface-border bg-surface-card p-6 text-text-on-surface shadow-elevated transition-colors">
+          <aside className="border-surface-border bg-surface-card text-text-on-surface shadow-elevated rounded-3xl border p-6 transition-colors">
             <div className="flex flex-col gap-4">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wider text-text-muted-on-surface">
+                <p className="text-text-muted-on-surface text-sm font-semibold tracking-wider uppercase">
                   {t('quick_actions_title')}
                 </p>
-                <h2 className="mt-2 text-xl font-semibold text-text-on-surface">
+                <h2 className="text-text-on-surface mt-2 text-xl font-semibold">
                   {t('quick_actions_subtitle')}
                 </h2>
               </div>
@@ -96,16 +96,16 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
                   <Link
                     key={action.key}
                     href={action.href}
-                    className="group flex items-start gap-3 rounded-xl border border-transparent bg-white/5 px-4 py-3 text-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary/40 dark:bg-slate-900/40"
+                    className="group hover:border-primary/40 focus:ring-primary/40 flex items-start gap-3 rounded-xl border border-transparent bg-white/5 px-4 py-3 text-sm transition-all hover:-translate-y-0.5 hover:bg-white/10 focus:ring-2 focus:outline-none dark:bg-slate-900/40"
                   >
-                    <span className="mt-1 text-primary">
+                    <span className="text-primary mt-1">
                       {action.icon}
                     </span>
                     <span className="flex flex-col gap-1">
-                      <span className="font-semibold text-text-on-surface group-hover:text-primary">
+                      <span className="text-text-on-surface group-hover:text-primary font-semibold">
                         {action.title}
                       </span>
-                      <span className="text-xs text-text-muted-on-surface">
+                      <span className="text-text-muted-on-surface text-xs">
                         {action.description}
                       </span>
                     </span>
@@ -117,15 +117,15 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
         </header>
 
         <div className="grid gap-6 lg:grid-cols-[1.4fr,1fr]">
-          <article className="flex flex-col gap-5 rounded-3xl border border-surface-border bg-surface-card p-6 text-text-on-surface shadow-elevated transition-colors">
+          <article className="border-surface-border bg-surface-card text-text-on-surface shadow-elevated flex flex-col gap-5 rounded-3xl border p-6 transition-colors">
             <div className="flex flex-col gap-2">
-              <p className="text-sm font-semibold uppercase tracking-wider text-text-muted-on-surface">
+              <p className="text-text-muted-on-surface text-sm font-semibold tracking-wider uppercase">
                 {t('manage_account_label')}
               </p>
-              <h2 className="text-2xl font-semibold leading-tight sm:text-3xl">
+              <h2 className="text-2xl leading-tight font-semibold sm:text-3xl">
                 {t('manage_account_title')}
               </h2>
-              <p className="text-sm text-text-muted-on-surface sm:text-base">
+              <p className="text-text-muted-on-surface text-sm sm:text-base">
                 {t('manage_account_subtitle')}
               </p>
             </div>
@@ -134,10 +134,10 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
               <ManageBillingButton variant="primary" />
               <Link
                 href={profileUrl}
-                className="inline-flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-sm font-semibold text-text-on-surface transition-all hover:-translate-y-0.5 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="text-text-on-surface hover:text-primary focus:ring-primary/40 inline-flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-sm font-semibold transition-all hover:-translate-y-0.5 focus:ring-2 focus:outline-none"
               >
                 <svg
-                  className="size-4 text-primary"
+                  className="text-primary size-4"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={1.5}
@@ -153,17 +153,17 @@ export default async function Dashboard(props: { params: Promise<{ locale: strin
               </Link>
             </div>
 
-            <ul className="space-y-2 text-sm text-text-muted-on-surface">
+            <ul className="text-text-muted-on-surface space-y-2 text-sm">
               <li className="flex items-start gap-2">
-                <span className="mt-1 size-1.5 rounded-full bg-primary" />
+                <span className="bg-primary mt-1 size-1.5 rounded-full" />
                 <span>{t('manage_account_point_billing')}</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-1 size-1.5 rounded-full bg-primary" />
+                <span className="bg-primary mt-1 size-1.5 rounded-full" />
                 <span>{t('manage_account_point_profile')}</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-1 size-1.5 rounded-full bg-primary" />
+                <span className="bg-primary mt-1 size-1.5 rounded-full" />
                 <span>{t('manage_account_point_security')}</span>
               </li>
             </ul>

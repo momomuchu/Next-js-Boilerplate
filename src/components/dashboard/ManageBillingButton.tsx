@@ -1,8 +1,8 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useState, useTransition } from 'react';
 import { createBillingPortalSession } from '@/actions/stripe';
-import { useTranslations } from 'next-intl';
 
 type ManageBillingButtonProps = {
   className?: string;

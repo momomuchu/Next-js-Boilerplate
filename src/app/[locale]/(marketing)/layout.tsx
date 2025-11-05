@@ -28,7 +28,7 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/"
-                className="text-lg font-semibold text-text-primary transition-colors hover:text-primary"
+                className="text-text-primary hover:text-primary text-lg font-semibold transition-colors"
               >
                 {AppConfig.name}
               </Link>
@@ -36,7 +36,7 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/"
-                className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
               >
                 {t('home_link')}
               </Link>
@@ -44,7 +44,7 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/about/"
-                className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
               >
                 {t('about_link')}
               </Link>
@@ -56,7 +56,7 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/sign-in/"
-                className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
               >
                 {t('sign_in_link')}
               </Link>
@@ -64,7 +64,7 @@ export default async function Layout(props: {
             <li>
               <Link
                 href="/sign-up/"
-                className="rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-[var(--color-primary-strong)]"
+                className="text-primary-foreground rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold shadow-sm transition-colors hover:bg-[var(--color-primary-strong)]"
               >
                 {t('sign_up_link')}
               </Link>
@@ -83,28 +83,28 @@ export default async function Layout(props: {
       >
         {props.children}
 
-        <footer className="border-t border-surface-border bg-bg-secondary transition-colors">
+        <footer className="border-surface-border bg-bg-secondary border-t transition-colors">
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              <div className="text-sm text-text-secondary transition-colors">
+              <div className="text-text-secondary text-sm transition-colors">
                 {`© Copyright ${new Date().getFullYear()} ${AppConfig.name}.`}
               </div>
               <div className="flex gap-6">
                 <Link
                   href="/privacy/"
-                  className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                  className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
                 >
                   {t('privacy_link')}
                 </Link>
                 <Link
                   href="/terms/"
-                  className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                  className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
                 >
                   {t('terms_link')}
                 </Link>
                 <Link
                   href="/cookies/"
-                  className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary"
+                  className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
                 >
                   {t('cookies_link')}
                 </Link>

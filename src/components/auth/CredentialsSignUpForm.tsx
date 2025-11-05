@@ -45,7 +45,7 @@ export const CredentialsSignUpForm = ({
     if (/\d/.test(pwd)) {
       strength += 1;
     }
-    if (/[^a-zA-Z\d]/.test(pwd)) {
+    if (/[^a-z\d]/i.test(pwd)) {
       strength += 1;
     }
     return Math.min(strength, 4);
@@ -128,7 +128,7 @@ export const CredentialsSignUpForm = ({
   };
 
   return (
-    <div className="group rounded-2xl border border-slate-200/60 bg-white/95 p-8 shadow-2xl backdrop-blur-sm transition-all hover:border-slate-300/80 hover:shadow-3xl dark:border-slate-700/30 dark:bg-slate-800/95">
+    <div className="group hover:shadow-3xl rounded-2xl border border-slate-200/60 bg-white/95 p-8 shadow-2xl backdrop-blur-sm transition-all hover:border-slate-300/80 dark:border-slate-700/30 dark:bg-slate-800/95">
       <div className="space-y-2">
         <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
           {labels.heading}
@@ -153,7 +153,7 @@ export const CredentialsSignUpForm = ({
               type="text"
               autoComplete="name"
               placeholder="John Doe"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder-slate-500 dark:focus:border-violet-400 dark:focus:ring-violet-400/20"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 transition-all focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder-slate-500 dark:focus:border-violet-400 dark:focus:ring-violet-400/20"
               value={name}
               onChange={event => setName(event.target.value)}
               disabled={isPending}
@@ -177,7 +177,7 @@ export const CredentialsSignUpForm = ({
               required
               autoComplete="email"
               placeholder="name@example.com"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder-slate-500 dark:focus:border-violet-400 dark:focus:ring-violet-400/20"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 placeholder-slate-400 transition-all focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder-slate-500 dark:focus:border-violet-400 dark:focus:ring-violet-400/20"
               value={email}
               onChange={event => setEmail(event.target.value)}
               disabled={isPending}
@@ -201,7 +201,7 @@ export const CredentialsSignUpForm = ({
               autoComplete="new-password"
               minLength={8}
               placeholder="••••••••"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-10 text-slate-900 placeholder-slate-400 transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder-slate-500 dark:focus:border-violet-400 dark:focus:ring-violet-400/20"
+              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 pr-10 text-slate-900 placeholder-slate-400 transition-all focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-50 dark:placeholder-slate-500 dark:focus:border-violet-400 dark:focus:ring-violet-400/20"
               value={password}
               onChange={event => handlePasswordChange(event.target.value)}
               disabled={isPending}
@@ -209,7 +209,7 @@ export const CredentialsSignUpForm = ({
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
+              className="absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300"
               tabIndex={-1}
             >
               {showPassword
@@ -227,11 +227,11 @@ export const CredentialsSignUpForm = ({
                   )}
             </button>
           </div>
-          
+
           {password && (
             <div className="space-y-1">
               <div className="flex gap-1">
-                {[...Array(4)].map((_, i) => (
+                {[...Array.from({ length: 4 })].map((_, i) => (
                   <div
                     key={i}
                     className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
@@ -242,7 +242,9 @@ export const CredentialsSignUpForm = ({
               </div>
               {passwordStrength > 0 && (
                 <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Password strength: <span className="font-medium">{getPasswordStrengthText()}</span>
+                  Password strength:
+                  {' '}
+                  <span className="font-medium">{getPasswordStrengthText()}</span>
                 </p>
               )}
             </div>
@@ -251,7 +253,7 @@ export const CredentialsSignUpForm = ({
 
         {error
           ? (
-              <div className="flex animate-shake items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
+              <div className="animate-shake flex items-center gap-2 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
                 <svg xmlns="http://www.w3.org/2000/svg" className="size-5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
@@ -261,7 +263,7 @@ export const CredentialsSignUpForm = ({
           : null}
 
         <button
-          className="group/btn relative w-full overflow-hidden rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white shadow-lg shadow-violet-500/25 transition-all hover:bg-violet-700 hover:shadow-xl hover:shadow-violet-500/40 focus:outline-none focus:ring-2 focus:ring-violet-500/50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-violet-500 dark:hover:bg-violet-600 dark:shadow-violet-500/20"
+          className="group/btn relative w-full overflow-hidden rounded-xl bg-violet-600 px-6 py-3 font-semibold text-white shadow-lg shadow-violet-500/25 transition-all hover:bg-violet-700 hover:shadow-xl hover:shadow-violet-500/40 focus:ring-2 focus:ring-violet-500/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-violet-500 dark:shadow-violet-500/20 dark:hover:bg-violet-600"
           type="submit"
           disabled={isPending}
         >

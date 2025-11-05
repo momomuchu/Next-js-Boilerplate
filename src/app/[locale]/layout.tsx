@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
 import { DemoBadge } from '@/components/DemoBadge';
+import { Toaster } from '@/components/ui/Toaster';
 import { routing } from '@/libs/I18nRouting';
 import '@/styles/global.css';
 
@@ -49,7 +50,7 @@ export default async function RootLayout(props: {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className="h-full dark">
+    <html lang={locale} className="dark h-full">
       <body className="h-full antialiased">
         <NextIntlClientProvider>
           <PostHogProvider>
@@ -57,6 +58,7 @@ export default async function RootLayout(props: {
           </PostHogProvider>
 
           <DemoBadge />
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>

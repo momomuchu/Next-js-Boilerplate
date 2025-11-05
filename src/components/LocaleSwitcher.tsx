@@ -1,9 +1,9 @@
 'use client';
 
 import type { ChangeEventHandler } from 'react';
-import { useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useMemo } from 'react';
 import { usePathname } from '@/libs/I18nNavigation';
 import { routing } from '@/libs/I18nRouting';
 
@@ -42,7 +42,7 @@ export const LocaleSwitcher = () => {
       <select
         defaultValue={locale}
         onChange={handleChange}
-        className="border-input-border bg-surface-input text-text-on-surface hover:border-primary/50 focus:border-primary focus:ring-primary/30 appearance-none rounded-lg border py-2.5 pr-10 pl-10 text-sm font-semibold uppercase tracking-wide transition-all duration-200 focus:ring-2 focus:outline-none"
+        className="border-input-border bg-surface-input text-text-on-surface hover:border-primary/50 focus:border-primary focus:ring-primary/30 appearance-none rounded-lg border py-2.5 pr-10 pl-10 text-sm font-semibold tracking-wide uppercase transition-all duration-200 focus:ring-2 focus:outline-none"
         aria-label={t('aria_label')}
       >
         {routing.locales.map(elt => (

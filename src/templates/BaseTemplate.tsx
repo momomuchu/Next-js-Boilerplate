@@ -4,8 +4,8 @@ export const BaseTemplate = (props: {
   children: React.ReactNode;
 }) => {
   return (
-    <div className="flex min-h-screen flex-col bg-bg-primary text-text-primary transition-colors">
-      <header className="border-b border-surface-border bg-bg-secondary transition-colors">
+    <div className="bg-bg-primary text-text-primary flex min-h-screen flex-col transition-colors">
+      <header className="border-surface-border bg-bg-secondary border-b transition-colors">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <nav aria-label="Main navigation">

@@ -1,12 +1,13 @@
 'use client';
 
+import type { ThemeType } from '@/utils/Theme';
 import { useEffect, useState } from 'react';
 import {
   applyTheme,
   getThemeFromStorage,
   setThemeInStorage,
   THEMES,
-  type ThemeType,
+
 } from '@/utils/Theme';
 
 export function ThemeSwitcher() {
